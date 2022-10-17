@@ -72,4 +72,5 @@ api_platform:
     version: "1.0.0"
     # pour ne pas afficher l'araignée
     show_webby: false
-    ```
+```
+
