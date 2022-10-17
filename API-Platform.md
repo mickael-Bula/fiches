@@ -23,7 +23,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  */
 ```
 
-NOTE : l'instruction qui suit ne semble pas nécessaire, l'important étant de faire un `use ApiPlatform\Core\Annotation\ApiResource;`
+NOTE : l'instruction qui suit est nécessaire pour que l'entité s'affiche dans l'interface. Toutefois, sa suppression après affichage conserve le mappage : comment ?
 
 Pour que les ressources soient affichées dans l'interface, j'ai également ajouté cette instruction :
 
