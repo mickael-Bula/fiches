@@ -59,3 +59,17 @@ Les entités sont bien reconnues d'une certaine manière par api platform puisqu
 Mais même dans la dernière version d'api platform et en utilisant symfony 6, aucune entity n'est reconnue comme une `api resource`.
 L'utilisation du flag `make:entity --api-resource` reste lui aussi inefficace.
 Lorsque l'on clic sur api platform dans la debug toolbar, les ressources ne sont pas reconnues...
+
+## Personnalisation de la configuration de l'API
+
+// config/packages/api_platform.yaml
+```yaml
+api_platform:
+    # ...
+    # personnalisation de l'api
+    title: "API de test"
+    description: "Suivi du tutoriel de Symfonycasts qui utilise une version qui n'est plus maintenue, ce qui requiert de l'adaptation."
+    version: "1.0.0"
+    # pour ne pas afficher l'araignée
+    show_webby: false
+    ```
