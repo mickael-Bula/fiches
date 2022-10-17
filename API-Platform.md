@@ -23,8 +23,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
  */
 ```
 
+NOTE : l'instruction qui suit ne semble pas nécessaire, l'important étant de faire un `use ApiPlatform\Core\Annotation\ApiResource;`
 Pour que les ressources soient affichées dans l'interface, j'ai également ajouté cette instruction :
-NOTE : celle-ci ne semble pas nécessaire, l'important est de faire un `use ApiPlatform\Core\Annotation\ApiResource;`
 
 ```yaml
 # config/package/api_platform.yaml
