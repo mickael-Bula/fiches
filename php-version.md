@@ -37,6 +37,6 @@ sources : https://atranchant.developpez.com/tutoriels/php/version-windows/
   
 ## INSTALLATION D'UNE NOUVELLE VERSION DE PHP SUR WAMPSERVER
   
-Les sources se trouvnt sur https://wampserver.aviatechno.net/
+Les sources se trouvent sur https://wampserver.aviatechno.net/
   
-Il suffit de sélectionner la version de php désirée, puis de lancer l'installateur.
+La procédure est des plus simples, puisqu'il suffit de sélectionner la version de php désirée pour ensuite lancer l'installateur.
