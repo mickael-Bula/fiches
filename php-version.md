@@ -40,3 +40,12 @@ sources : https://atranchant.developpez.com/tutoriels/php/version-windows/
 Les sources se trouvent sur https://wampserver.aviatechno.net/
   
 La procédure est des plus simples, puisqu'il suffit de sélectionner la version de php désirée pour ensuite lancer l'installateur.
+  Une fois installée, la version de php se trouve disponible, sans qu'il soit nécessaire de mettre à jour les variables d'environnement.
+  Pour preuve, il suffit de lancer la commande : 
+  
+  ```bash
+  $ symfony local:php:list
+  ```
+  
+  > NOTE : il faut veiller à relancer le terminal pour que le système soit mis à jour
+  
