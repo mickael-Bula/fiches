@@ -34,3 +34,9 @@ $ symfony composer <action>
 sources : https://atranchant.developpez.com/tutoriels/php/version-windows/
 
 ##### NOTE : il faut veiller à ce que le fichier php.ini soit bien présent (en renommer une copie depuis php.ini-development si nécessaire). Dans ce fichier, il faut décommenter la ligne 'extension=openssl'
+  
+## INSTALLATION D'UNE NOUVELLE VERSION DE PHP SUR WAMPSERVER
+  
+Les sources se trouvnt sur https://wampserver.aviatechno.net/
+  
+Il suffit de sélectionner la version de php désirée, puis de lancer l'installateur.
