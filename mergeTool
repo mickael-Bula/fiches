@@ -1,7 +1,15 @@
-# test
+# Résolution de conflit dans phpstorm
 
-Modification depuis GitHub
+La résolution des conflits depuis phpstorm peut être réalisée depuis les outils de l'IDE ou depuis la console.
 
-Modification depuis le poste local
+## depuis la console
 
-Résolution possible depuis la console ?
+Si les commandes git sont saisies depuis la console et qu'un conflit survient, la résolution est réalisée dans une fenêtre de l'IDE.
+Dans celle-ci, il s'agit de réécrire le fichier en supprimant à la fois les les changements non pertinents et les marqueurs de conflits.
+Tout ce qui apparaît dans le résultat final doit ensuite faire l'objet d'un ```commit```, voire d'un ```push```.
+
+## depuis l'outil *Git* du menu de l'IDE
+
+Si la commande a été lancée depuis le menu de l'IDE et qu'un conflit existe, alors une fenêtre notifiant celui-ci s'ouvre.
+Dans celle-ci, l'ensemble des fichiers concernés est listé.
+
