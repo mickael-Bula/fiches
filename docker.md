@@ -53,3 +53,10 @@ Pour quitter ce pseudo-terminal, la commande est :
 $ exit
 ```
 
+## sudo dans Docker
+
+Par défaut, l'utilisateur de Docker est root. Si toutefois la commande ```sudo``` est requise, il est possible de l'installer comme ceci depuis le CLI Docker :
+
+```bash
+$ apt-get update && apt-get -y install sudo
+```
