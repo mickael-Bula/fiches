@@ -60,3 +60,20 @@ Par défaut, l'utilisateur de Docker est root. Si toutefois la commande ```sudo`
 ```bash
 $ apt-get update && apt-get -y install sudo
 ```
+
+## Partager un volume entre l'hôte Windows et le container docker
+
+Il est possible de monter un répertoire de l'hôte (en l'occurence Windows) dans le container. Ceci permet de faire subsister les données même après la suppression du container :
+
+```bash
+$ docker run -p 8000:80 --name=webserver -d -v "C:\Users\bulam\Documents\docker":/usr/share/nginx/html nginx
+```
+
+> Il faut que le répertoire contienne au moins un fichier index.html avec du contenu pour que ceui-ci soit visible dans le navigateur. Pour cela :
+
+```bash
+# les commandes echo, cat et > fonctionne dans les console sous Windows (Cmder, bash... 😃)
+$ echo "Un fichier de test" > index.html
+```
+
+
