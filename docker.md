@@ -67,6 +67,7 @@ Il est possible de monter un répertoire de l'hôte (en l'occurence Windows) dan
 
 ```bash
 $ docker run -p 8000:80 --name=webserver -d -v "C:\Users\bulam\Documents\docker":/usr/share/nginx/html nginx
+# on peut également utiliser une syntaxe alternative pour le path Windows : "//c/path/to/my/host/folder" (les // représentent la racine)
 ```
 
 > Il faut que le répertoire contienne au moins un fichier index.html avec du contenu pour que ceui-ci soit visible dans le navigateur. Pour cela :
