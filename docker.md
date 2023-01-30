@@ -45,6 +45,8 @@ Il est possible de lancer un pseudo-terminal au sein même d'un container actif 
 $ docker exec -ti 8e45 /bin/bash
 ```
 
+> Il est possible de lancer la commande ```bash``` directement, c'est-à-dire sans le ```bin/```
+
 Pour quitter ce pseudo-terminal, la commande est :
 
 ```bash
