@@ -55,11 +55,11 @@ Je peux donc ecrire mes scripts sur le pc, sous Windows, puis lancer leur exécu
 Pour rappel, voici les commandes pour charger, lancer, arrêter et détruire le container :
 
 ```bash
-$ docker ps                 # affiche les processus (containers) actifs
-$ docker ps -a              # affiche tous les containers, mêmes inactifs
-$ docker start ubuntu       # permet de relancer le container préalablement créé
-$ docker stop ubuntu        # arrêt du container sans le détruire
-$ docker rm ubuntu          # supprime le container
-$ docker exec -ti bin/bash  # exécute la commande bin/bash depuis un terminal interactif lancé dans le container
-$ exit                      # permet de sortir du terminal lancé dans le container pour retourner dans le terminal hors Docker
+$ docker ps                         # affiche les processus (containers) actifs
+$ docker ps -a                      # affiche tous les containers, mêmes inactifs
+$ docker start ubuntu               # permet de relancer le container préalablement créé
+$ docker stop ubuntu                # arrêt du container sans le détruire
+$ docker rm ubuntu                  # supprime le container
+$ docker exec ubuntu -ti bin/bash   # exécute la commande bin/bash depuis un terminal interactif lancé dans le container
+$ exit                              # permet de sortir du terminal lancé dans le container pour retourner dans le terminal hors Docker
 ```
