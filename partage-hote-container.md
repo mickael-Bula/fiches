@@ -65,3 +65,25 @@ $ docker rm ubuntu                  # supprime le container
 $ docker exec ubuntu -ti bin/bash   # exécute la commande bin/bash depuis un terminal interactif lancé dans le container
 $ exit                              # permet de sortir du terminal lancé dans le container pour retourner dans le terminal hors Docker
 ```
+
+## Remarque et bilan
+
+Il faut ajouter la déclaration des volumes partagés dès la construction du container.
+Autrement dit, on ne peut pas ajouter la déclaration des volumes à un container déjà créé.
+
+Pour avoir une instance de linux avec un terminal ouvert lors d'un run, je dois ajouter l'option -ti. Inutile d'ajouter la commande 'bin/bash' :
+$ docker run --name base-linux -ti ubuntu
+
+Une fois créé, le container ouvre un terminal que je peux alors explorer.
+Pour le quitter : $ exit
+
+Si je veux retourner dans le container, il faut d'abord que je le relance :
+$ docker start <container-name>
+
+Ensuite, je dois explicitement déclaré l'ouverture d'un terminal dans le container, ainsi que la commande qui doit y être exécutée :
+$ docker exec -ti <container-name> bin/bash
+
+Il faut comprendre qu'un container n'est accessible qu'aussi longtemps que son processus principal est actif.
+Autrement dit, on ne peut y lancer un terminal que s'il est actif, et il n'est actif que dans la mesure où un processus long s'y déroule.
+
+> Bilan : il faut ajouter l'option -ti lors de la création du container pour que celui-ci ne soit pas arrêté juste après son lancement.
