@@ -35,6 +35,8 @@ Autrement dit, au lancement du script dans la console, c'est le fichier lui-mêm
 
 ## lancement du script
 
+Depuis le terminal ouvert dans le container :
+
 ```bash
 $ cd /home/data/test1
 $ ./script.sh
