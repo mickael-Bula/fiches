@@ -44,6 +44,8 @@ MESSENGER_TRANSPORT_DSN=doctrine://default
 $ symfony console messenger:consume async [-vv]
 ```
 
+Pour vérifier et accéder aux mails, il faut se conneecter à la plateforme de Mailtrap à l'adresse https://mailtrap.io/
+
 On doit alors voir dans mailtrap les mails récupérés.
 
 ## autre solution pour l'envoi direct
