@@ -1,6 +1,6 @@
 # installation d'API Platform en utilisant php 7.4
 
-J'ai procédé comme suit pour lier pai platform et Symfony :
+J'ai procédé comme suit pour lier api platform et Symfony :
 
 ```bash
 $ symfony new apiPlatform
@@ -38,7 +38,7 @@ Après ces commandes, les entités déclarées dans Doctrine se trouvent disponi
 Ce n'est que dans un second temps que la connexion à la BDD devient nécessaire :
 
 ```bash
-$ cp .env .env.local                        # veiller à mettre le portr 3308 si on se trouve sur le laptop
+$ cp .env .env.local                        # veiller à mettre le port 3308 si on se trouve sur le laptop
 $ symfony console doctrine:database:create
 $ symfony console doctrine:schema:create    # cette ligne est optionnelle puisqu'aucune table n'a encore été créée
 $ symfony console make:migration
