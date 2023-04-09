@@ -26,7 +26,7 @@ Symfony met à disposition de nombreuses méthodes pour récupérer des données
         $result = $qb
             ->select('g')
             ->from('App:Genre', 'g')
-            ->where('g.id = ?1')
+            ->where('g.id = ?1')    # le queryBuilder impose d'accoler un nombre à chaque paramètre placé (?) ou nommé (:name)
             ->setParameter(1, 4)
             ->getQuery()
             ->getResult();
