@@ -49,3 +49,32 @@ J'y ajoute les fichiers nécessaires à la création de ma page web. ensuite, je
 ```bash
 vagrant@vagrant:~$ sudo cp /vagrant/webcontent/* /var/www/html/
 ```
+
+## automatisation des dernières tâches
+
+Parce que le principe de la VM est de pouvoir être détruite et reconstruite à volonté, sa configuration permet de récupérer automatiquement les fichiers quin ont été transférés depuis l'hôte. Pour cela, il faut décommenter et modifier le Vagrantfile : 
+
+```yaml
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get install -y apache2
+    cp -r /vagrant/webContent/* /var/www/html/
+    echo "Machine virtuelle provisionnéele $(date)! Bienvenue!"
+  SHELL
+end
+```
+
+Pour vérifier que le Vagrantfile est conforme, depuis l'hôte et placé à la racine du projet contenant le Vagrantfile :
+
+```bash
+$ vagrantfile validate
+```
+
+Si tout est correct, la réponse est `Vagrantfile validated successfully.`
+
+Il est alors possible d'arrêter, détruire et reconstruire la VM tout en récupérant de manière automatique les pages web depuis l'hôte !
+
+```bash
+$ vagrant destroy
+$ vagrant up
+```
