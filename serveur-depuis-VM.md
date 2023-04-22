@@ -4,6 +4,9 @@ Je m'exerce avec le tutoriel fourni ici : https://www.tutorialworks.com/linux-vm
 
 Dans ce tutoriel, il s'agit de créer une machine virtuelle avec Virtualbox et Vagrant.
 
+Le résultat du travail réalisé surla base de ce tutoriel se trouve disponible sur mon pc sous `C:\Users\bulam\Vagrant-ubuntu18`.
+Après ouverture d'un Terminal, il fautr lancer la commande `$ vagrant up` pour monter la VM. Une fois celle-ci provisionnée avec les fichiers récupérés depuis l'hôte, il faut lancer un navigateur - toujours de puis l'hôte - puis visiter l'url http://192.168.33.10/
+
 ```bash
 $ cd C:\Users\bulam\                # je crée un répertoire vide pour accueillir mon projet
 $ mkdir Vagrant-ubuntu18            
