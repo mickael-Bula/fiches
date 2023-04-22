@@ -1,0 +1,51 @@
+# CONFIGURATION D'UN SERVEUR APACHE AU SEIN D'UNE VM VIRTUALBOX
+
+Je m'exerce avec le tutoriel fourni ici : https://www.tutorialworks.com/linux-vm-vagrant/
+
+Dans ce tutoriel, il s'agit de créer une machine virtuelle avec Virtualbox et Vagrant.
+
+```bash
+$ cd C:\Users\bulam\                # je crée un répertoire vide pour accueillir mon projet
+$ mkdir Vagrant-ubuntu18            
+$ cd Vagrant-ubuntu18
+$ vagrant init hashicorp/bionic64   # j'initialise un Vagrantfile pour monter une distribution ubuntu
+$ ls -al                            # je m'assure de sa présence
+$ code Vagrantfile                  # je lance VsCode pour configurer le réseau
+```
+
+Pour rendre le serveur accessible depuis l'extérieur de la VM, j'assigne une adresse ip spécifique en décommentant la ligne :
+
+```ini
+config.vm.network "private_network", ip: "192.168.33.10"    # j'ouvre sur l'extérieur
+```
+
+Ensuite, je lance ma VM :
+
+```bash
+$ vagrant up        # je lance la VM
+$ vagrant ssh       # je m'y connecte
+```
+
+Une fois celle-ci lancée, je peux l'interroger depuis l'hôte et un navigateur en utilisant l'url `http://192.168.33.10` configurée dans le Vagrantfile.
+
+Pour personnaliser la page présentée, je peux me rendre dans le Document Root pour modifier le contenu du fichier index.html :
+
+```bash
+vagrant@vagrant:~$ cd /var/www/html
+vagrant@vagrant:~$ sudo nano index.html
+```
+
+Mais je peux aussi faire mes modifications depuis l'hôte, puis copier celles-ci dans la VM en faisant usage de la synchronisation entre le répertoire courant de l'app et le répertoire /vagrant de la VM.
+
+Pour cela, après avoir créer ou récupérer le contenu (des pages html, des images...), je dois les déplacer aus ein de la VM : du répertoire synchronisé vers le Document Root d'Apache :
+
+```bash
+$ cd C:\Users\bulam\Vagrant-ubuntu18
+mkdir webContent
+```
+
+J'y ajoute les fichiers nécessaires à la création de ma page web. ensuite, je retourne dans la VM pour servir les fichiers depuis apache :
+
+```bash
+vagrant@vagrant:~$ sudo cp /vagrant/webcontent/* /var/www/html/
+```
