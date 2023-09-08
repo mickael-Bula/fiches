@@ -5,7 +5,7 @@ Il faut configurer '.env.local' (ici avec 'mailtrap' dans la phase de dev) :
 
 ```
 ###> symfony/mailer ###
-MAILER_DSN=smtp://1b6d6e9439f364:f773d3bae6ec1f@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login
+MAILER_DSN=smtp://user:password@smtp.mailtrap.io:2525?encryption=tls&auth_mode=login
 ###< symfony/mailer ###
 ```
 
