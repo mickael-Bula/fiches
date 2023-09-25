@@ -43,12 +43,12 @@ Wampserver configure la version de php utilisée par le webserver apache. Ce php
 Danc ce fichier, xdebug est automatiquement configuré avec une version qui se trouve dans le répertoire `zend_ext`.
 Il est possible d'y ajouter une autre version de xdebug téléchargée dans le répertoire ext du php utilisé :
 
-``ìniù
+```ìni
 ;zend_extension="c:/wamp64/bin/php/php7.4.26/zend_ext/php_xdebug-3.1.1-7.4-vc15-x86_64.dll"  # xdebug configuré par Wampserver
 zend_extension="C:/wamp64/bin/php/php7.4.26/ext/php_xdebug.dll"     # xdebug en version 3.1.6
 ```
 
-Pour utiliser l'une ou l'autre version, il suffit de la décommenter et de commenter l'autre. A noter que commentre les deux désactive xdebug.
+Pour utiliser l'une ou l'autre version, il suffit de la décommenter et de commenter l'autre. A noter que commenter les deux désactive xdebug.
 
 ## Note concernant mysql
 
