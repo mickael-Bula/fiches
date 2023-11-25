@@ -2,7 +2,7 @@
 
 J'utilise docker pour créer deux machines linux communiquant sur le même réseau.
 
-## Les commandes pour vréer le réseau, les machines et configurer la connexion SFTP
+## Les commandes pour créer le réseau, les machines et configurer la connexion SFTP
 
 Les sources m'ayant permis de réaliser la connexion sont https://chat.openai.com/c/2330f975-5d2a-4b83-8b21-1075827683d6
 
