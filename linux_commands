@@ -1,0 +1,6 @@
+# Commandes linux utiles - snipets
+
+- compter le nombre de fichiers et sous-répertoires contenus du répertoire courant :
+$ ll | wc -l
+- même décompte, mais en filtrant pour n'afficher que les lignes non vides :
+$ sed /^S/d . | wc -l
