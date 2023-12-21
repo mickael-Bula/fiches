@@ -21,7 +21,7 @@ $ sudo mysql_secure_installation
 # on peut alors répondre Yes à toutes les questions pour renforcer la sécurité
 ```
 
-Une fois fait, on peut rétablir l'authentification 'sudo' :
+Une fois fait, on peut rétablir l'authentification **sudo** :
 
 ```bash
 $ mysql -u root -p	# taper le ot de passe précédemment configuré
@@ -31,7 +31,7 @@ $ mysql -u root -p	# taper le ot de passe précédemment configuré
 mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
 ```
 
-On peut alors, à nouveau, se connecter avec 'sudo :
+On peut alors, à nouveau, se connecter avec **sudo** :
 
 ```bash
 $ sudo mysql
