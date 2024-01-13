@@ -54,5 +54,11 @@ La sortie générée est alors :
 symfony serve -d
 ```
 
-Ce qui permet d'ouvrir le projet dans le navigateur facilement 🖥️
-V
+Il est possible de combiner les commandes Symfony dans le fichier Makefile :
+
+```make
+launch:
+	symfony serve -d && symfony open:local
+```
+
+Ce qui permet d'ouvrir rapidement le projet dans le navigateur 😀 🖥️
