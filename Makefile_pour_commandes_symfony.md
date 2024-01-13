@@ -53,3 +53,6 @@ La sortie générée est alors :
 ```bash
 symfony serve -d
 ```
+
+Ce qui permet d'ouvrir le projet dans le navigateur facilement 🖥️
+V
