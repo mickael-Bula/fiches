@@ -20,3 +20,10 @@ Ouvrir une fenêtre Powershell ou une instance de Cmder, puis lancer lancer la c
 scoop install symfony-cli   # pour une première installation
 scoop update symfony-cli    # pour une mise à jour
 ```
+
+## Obtenir le fichier php.ini
+
+Pour récupérer facilement le php.ini utilisé, on peut saisir en console :
+
+```symfony php -i | grep php.ini
+```
