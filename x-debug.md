@@ -57,6 +57,7 @@ Pour acc√©der au mysql de Wampserver en ligne de commande, il faut d'abord se d√
 ```bash
 $ cd C:\wamp64\bin\mysql\mysql8.0.27\bin
 $ mysql.exe -u webtraderUser -p
+```
 
 ## INSTALLATION DE XDEBUG DANS LARAGON
 
