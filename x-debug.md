@@ -19,8 +19,8 @@ Voici le contenu de mon php.ini pour lequel le pas à pas est disponible dans ph
 ```ini
 
 [Xdebug]
-;zend_extension="chemin\absolu\vers\l\extension";
-zend_extension="C:/wamp64/bin/php/php7.4.26/ext/php_xdebug.dll";
+;zend_extension="chemin\absolu\vers\l\extension"
+zend_extension="C:/wamp64/bin/php/php7.4.26/ext/php_xdebug.dll"
 xdebug.mode=develop,debug,profile
 xdebug.start_with_request=yes 
 xdebug.client_host="127.0.0.1"
@@ -57,3 +57,33 @@ Pour accéder au mysql de Wampserver en ligne de commande, il faut d'abord se d�
 ```bash
 $ cd C:\wamp64\bin\mysql\mysql8.0.27\bin
 $ mysql.exe -u webtraderUser -p
+
+## INSTALLATION DE XDEBUG DANS LARAGON
+
+Récupérer la version courante de php dans Laragon, disponible en suivant le lien `phpinfo()` depuis l'onglet `www`.
+Aller sur la page de xdebug : https://xdebug.org/wizard
+Passer le contenu du phpinfo() et suivre les instructions pour le téléchargement et l'enregistrement de la dll.
+Activer l'extension xdebug dans Laragon en faisant un clic droit sur son icone dans la barre de tâche.
+Renseigner les lignes suivantes dans le php.ini de la version courante :
+
+```ini
+[xdebug]
+;zend_extension="chemin\absolu\vers\l\extension";
+zend_extension="C:/laragon/bin/php/php-8.1.10-Win32-vs16-x64/ext/php_xdebug.dll"  ;renseigner le chemin vers la dll téléchargée précédemment
+xdebug.mode=develop,debug,profile
+xdebug.start_with_request=yes
+xdebug.client_host="127.0.0.1"
+xdebug.client_port=9003
+xdebug.remote_handler=dbgp
+xdebug.idekey=PHPSTORM
+xdebug.remote_autostart=1
+xdebug.profiler_enable=1
+xdebug.output_dir="c:/laragon/www/xdebug"  ;ce répertoire doir être créé dans Laragon afin de recevoir les logs en provenance de xdebug
+xdebug.show_local_vars=0
+xdebug.log="c:/wamp64/logs/xdebug.log"
+xdebug.log_level=7
+xdebug.cli_color=2
+;xdebug.mode=coverage
+```
+Puis, sélectionner PHP > Extensions > xdebug.
+Relancer le serveur, puis naviguer à nouveau vers phpinfo() afin de vérifier que xdebug est bien installé.
