@@ -5,7 +5,7 @@ Pour créer un alias pour phpStorm par exemple, à la fin du fichier, ajouter :
 
 ```cmd
 rem mes aliases personnalisés
-phs=phpstorm64.exe
+phs=phpstorm64.exe .
 ```
 
-Ouvrir ensuite un **nouveau** terminal et saisir `phs .` pour ouvrir le répertoire courant dans phpStorm.
+Ouvrir ensuite un **nouveau** terminal et saisir `phs` pour ouvrir le répertoire **courant** dans phpStorm.
