@@ -86,5 +86,42 @@ xdebug.log_level=7
 xdebug.cli_color=2
 ;xdebug.mode=coverage
 ```
+
 Puis, sélectionner PHP > Extensions > xdebug.
 Relancer le serveur, puis naviguer à nouveau vers phpinfo() afin de vérifier que xdebug est bien installé.
+
+## Lancer une session de debug Javascript dans phpstorm
+
+Pour lancer une séance de debug Javascript depuis phpstorm :
+
+- Run > Edit configurations : sélectionner Javascript debug
+	Renseigner un nom (Javascript debug par exemple)
+	url : http://localhost:8000 (l'url lancée avec le serveur symfony et le port utilisé)
+	choisir le navigateur chrome
+	Apply
+
+- Mettre un point d'arrêt dans le code JS
+
+Lancer le serveur avec: $ symfony serve -d
+
+Sélectionner la session de debug Javascript dans la fenêtre à gauche de la flèche verte : Javascript debug (le nom défini précédemment)
+
+Activer Debug (icone du 'bug' s'active avec un point vert)
+
+Recharger le navigateur : le point d'arrêt est atteint
+
+## Lancer simultanément les sessions de debug PHP et JS
+
+Pour ce faire, il faut que les configurations déclarées soient communes.
+Par exemple, déclarer http://webtrader pour les configurations :
+
+- Run > Debug configurations > Php Web Page => server = wampserver, start url = / (http://webtrader)
+- Run > Debug configurations > Javascript Debug > URL = http://webtrader
+
+Ensuite, dans le menu déroulant à gauche de la flèche verte (run) :
+- choisir javascript debug (configuration js) et cliquer sur le bug vert (il s'allume) : une session du navigateur est lancée
+- cliquer sur l'icone Start listening for PHP debug connection pour activer le debug php : le debug php écoute les connexions depuis la session ouverte
+
+Recharger le navigateur : l'exécution du code est arrêtée lorsque les points d'arrêt js ET php sont touchés 😀
+
+>NOTE : il est possible de voir le contenu de la console des DevTools dans le terminal de phpstorm sous le bin nommé onglet `console`.
