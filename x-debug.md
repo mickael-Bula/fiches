@@ -125,3 +125,18 @@ Ensuite, dans le menu déroulant à gauche de la flèche verte (run) :
 Recharger le navigateur : l'exécution du code est arrêtée lorsque les points d'arrêt js ET php sont touchés 😀
 
 >NOTE : il est possible de voir le contenu de la console des DevTools dans le terminal de phpstorm sous le bin nommé onglet `console`.
+
+## AJOUTER XDEBUG A UNE NOUVELLE VERSION DE PHP INSTALLÉE DANS LARAGON
+
+Il faut télécharger les sources de la version de php.
+Le fichier doit ensuite être décompressé dans le répertoire laragon/bin/php.
+
+Pour ajouter xdebug à la version de php, il faut passer le contenu de la commande php -i sur la page de xdebug.
+Cette version doit ensuite être téléchargée, puis placée dans le répertoire ext de la version de la nouvelle version de php.
+Dans le fichier php.ini de cette version, il faut également renseigner le chemin vers le php_xdebug.dll.
+
+Pour bénéficier du pas à pas dans phpstorm, il faut déclarer la version de php à utiliser en spécifiant :
+
+- le chemin vers l'exécutable php (php.exe)
+- le chemin vers le fichier de configuration (php.ini)
+- le chemin vers le module xdebug (ext/x_debug.php)
