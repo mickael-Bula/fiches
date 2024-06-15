@@ -140,3 +140,5 @@ Pour bénéficier du pas à pas dans phpstorm, il faut déclarer la version de p
 - le chemin vers l'exécutable php (php.exe)
 - le chemin vers le fichier de configuration (php.ini)
 - le chemin vers le module xdebug (ext/x_debug.php)
+
+>NOTE : Il faut veiller à activer les drivers des BDD dans le menu php > Extensions dans Laragon
