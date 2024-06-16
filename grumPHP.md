@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-$ composer require --dev phpro/grumphp friendsofphp/php-cs-fixer symfony/yaml phpspec/phpspec phpunit/phpunit
+$ composer require --dev phpro/grumphp friendsofphp/php-cs-fixer symfony/yaml phpunit/phpunit
 $ vendor\bin\grumphp configure
 $ vendor\bin\grumphp git:init
 ```
@@ -25,7 +25,6 @@ parameters:
     tasks:
         phpcsfixer:
             config: .php_cs.dist
-        phpspec: ~
         phpunit:
             config_file: phpunit.xml.dist
         yamllint:
