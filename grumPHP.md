@@ -51,7 +51,7 @@ Après avoir téléchargé et configuré la nouvelle version de php, j'ai pu lan
 ### Troubleshooting avec grumphp
 
 J'ai rencontré une difficulté dans la validation des commits faits depuis phpstorm.
-En effet, malgré une exécution réussir de la commande `vendor\bin\grumphp run`,
+En effet, malgré une exécution réussie de la commande `vendor\bin\grumphp run`,
 le commit des modifications depuis les outils phpstorm n'a pas fonctionné.
 L'erreur signalée reprenait l'erreur suivante :
 
@@ -63,6 +63,16 @@ Or, la version de php utilisée est bien >= à 8.1.17.
 
 J'ai pu passer outre le problème en exécutant le commit depuis la console.
 Il semblerait donc qu'il y ait une différence entre les versions utilisées pour commiter entre console et phpstorm...
+
+#### Correction des variables d'environnement pour commiter depuis phpstorm
+
+Avec l'ajout de **grumphp** qui nécessite l'utilisation d'une version de php >= 8.1.17,
+je me suis aperçu que l'ajout d'un commit depuis phpstorm était mal configurée.
+En effet, l'outil git de phpstorm récupère la version de php dans le PATH pour lancer les étapes de pré-commit.
+Or, la version déclarée dans le PATH était 8.1.10.
+
+Après modification de la version de php déclarée dans le PATH system et utilisé par git,
+j'ai pu faire mes commits avec la bonne version de php et sans rencontrer d'erreur.
 
 #### Exclure certains répertoires de l'analyse
 
@@ -77,13 +87,3 @@ la manière de procéder est la suivante :
 
 Ceci permet de ne pas couvrir la partie des tests qui n'a pas été écrite,
 mais qui doit être utilisée pour la découverte des symboles.
-
-#### Correction des variables d'environnement pour commiter depuis phpstorm
-
-Avec l'ajout de **grumphp** qui nécessite l'utilisation d'une version de php >= 8.1.17,
-je me suis aperçu que l'ajout d'un commit depuis phpstorm était mal configurée.
-En effet, l'outil git de phpstorm récupère la version de php dans le PATH pour lancer les étapes de pré-commit.
-Or, la version déclarée dans le PATH était 8.1.10.
-
-Après modification de la version de php déclarée dans le PATH system et utilisé par git,
-j'ai pu faire mes commits avec la bonne version de php et sans rencontrer d'erreur.
