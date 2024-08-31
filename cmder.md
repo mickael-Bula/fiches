@@ -34,3 +34,9 @@ phs=phpstorm64.exe .
 ```
 
 Ouvrir ensuite un **nouveau** terminal et saisir `phs` pour ouvrir le répertoire **courant** dans phpStorm.
+
+Un autre alias utile pour afficher la liste du contenu d'un répertoire en y ajoutant les droits et la coloration :
+
+```cmd
+ll=ls -alh --show-control-chars -F --color $*
+```
