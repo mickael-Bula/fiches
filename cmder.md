@@ -40,3 +40,6 @@ Un autre alias utile pour afficher la liste du contenu d'un répertoire en y ajo
 ```cmd
 ll=ls -alh --show-control-chars -F --color $*
 ```
+
+>NOTE : Ajouter $* à la fin de l'alias permet de transmettre tous les arguments supplémentaires à la commande ls,
+>ce qui signifie que l'on peut toujours utiliser les options habituelles de ls avec cet alias.
