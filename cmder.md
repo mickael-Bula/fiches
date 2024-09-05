@@ -43,3 +43,14 @@ ll=ls -alh --show-control-chars -F --color $*
 
 >NOTE : Ajouter $* à la fin de l'alias permet de transmettre tous les arguments supplémentaires à la commande ls,
 >ce qui signifie que l'on peut toujours utiliser les options habituelles de ls avec cet alias.
+
+## Ajouter le Cmder de Laragon dans le menu contextuel de Windows
+
+Si le raccourci de Cmder fournit par Laragon ne fonctionne pas depuis le menu contextuel (clic droit dans un répertoire),
+il faut lancer l'exécutable du Cmder avec les droits administrateur puis saisir dans le terminal :
+
+```bash
+# l'exécutable Cmder se trouve dans le répertoire de laragon\bin\cmder
+cmder /REGISTER ALL
+```
+
