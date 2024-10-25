@@ -1,6 +1,6 @@
 # Commandes pour pousser sur Github un projet local
 
-Il faut au ^réalable que le projet soit suivi par git
+Il faut au préalable que le projet soit suivi par git
 
 ```bash
 $ git init
