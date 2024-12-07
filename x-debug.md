@@ -164,8 +164,10 @@ $ sudo nano /etc/apache2/ports.conf
 
 Il faut configurer le service ssh correctement, en autorisant :
 
+```bash
 PermitRootLogin yes
 PasswordAuthentication yes
+```
 
 Il faut penser à relancer le service ssh :
 
