@@ -142,3 +142,37 @@ Pour bénéficier du pas à pas dans phpstorm, il faut déclarer la version de p
 - le chemin vers le module xdebug (ext/x_debug.php)
 
 >NOTE : Il faut veiller à activer les drivers des BDD dans le menu php > Extensions dans Laragon
+
+## Configurer xdebug sur un serveur distant
+
+Exemple de configuration de Xdebug dans WSL (distribution Ubuntu 20.04)
+
+Pour me connecter au serveur Apache de WSL, j'utilise l'IP. Le port apache configuré est 8080 :
+http://172.30.161.248:8080/info.php
+
+Pour récupérer l'IP :
+
+```bash
+$ ip addr show eth0
+```
+
+Pour récupérer le port sur lequel écoute apache :
+
+```bash
+$ sudo nano /etc/apache2/ports.conf
+```
+
+Il faut configurer le service ssh correctement, en autorisant :
+
+PermitRootLogin yes
+PasswordAuthentication yes
+
+Il faut penser à relancer le service ssh :
+
+```bash
+$ sudo service ssh restart
+```
+
+Il faut configurer le serveur WSL dans phpstorm : CTRL + ALT + S > CLI Interpreter > ... > + > Ajouter l'IP de WSL, ainsi que user et mdp
+
+On peut laisser l'interpréteur php par défaut : usr/bin/php : phpqtorm devrait résoudre l'exécutable et le fichier de configuration (php.ini) sur la base de ces infos.
