@@ -175,6 +175,10 @@ Il faut penser à relancer le service ssh :
 $ sudo service ssh restart
 ```
 
+Il faut que xdebug soit installé pour la version de php utilisée par apache.
+
 Il faut configurer le serveur WSL dans phpstorm : CTRL + ALT + S > CLI Interpreter > ... > + > Ajouter l'IP de WSL, ainsi que user et mdp
 
-On peut laisser l'interpréteur php par défaut : usr/bin/php : phpqtorm devrait résoudre l'exécutable et le fichier de configuration (php.ini) sur la base de ces infos.
+On peut laisser l'interpréteur php par défaut : usr/bin/php : phpstorm devrait résoudre l'exécutable et le fichier de configuration (php.ini) sur la base de ces infos.
+
+Le test effectué avec un point d'arrêt dans le code de test (sans même que ce code soit présent localement) est concluant.
