@@ -87,3 +87,72 @@ la manière de procéder est la suivante :
 
 Ceci permet de ne pas couvrir la partie des tests qui n'a pas été écrite,
 mais qui doit être utilisée pour la découverte des symboles.
+
+## Exemple de configuration complète
+
+```yaml
+// grumphp
+grumphp:
+    git_hook_variables:
+        EXEC_GRUMPHP_COMMAND: 'vendor\bin\grumphp'
+    stop_on_failure: false
+    process_timeout: 60
+    tasks:
+        phpstan:
+            level: 5
+            autoload_file: vendor/autoload.php
+        phpunit:
+            config_file: phpunit.xml.dist
+        phpcsfixer:
+            config: .php-cs-fixer.dist.php
+            allow_risky: true
+            diff: true
+            verbose: true
+        yamllint: ~
+        phplint:
+            triggered_by: [ 'php' ]
+            exclude: [ 'vendor' ]
+        phpmd: # PHP Messe Detector
+            ruleset: [ 'phpmd.xml' ]
+            exclude: [ 'tests' ]
+            triggered_by: [ 'php' ]
+        phpmnd: #PHP Magic Number Detector
+            exclude_path: ['vendor', 'var']
+```
+
+## Exemple de configuration de phpmd.xml
+
+```xml
+// phpmd.xml
+<?xml version="1.0"?>
+<ruleset name="Règles personnalisées">
+    <description>Mes règles personnalisées</description>
+
+    <rule ref="rulesets/cleancode.xml">
+        <exclude name="StaticAccess" />
+        <exclude name="MissingImport" />    <!-- Cette règle entre en contradiction avec les vérifications de php-cs-fixer -->
+        <exclude name="BooleanArgumentFlag" />
+        <exclude name="IfStatementAssignment" />
+    </rule>
+    <!-- J'autorise l'accès aux super globales pour permettre l'exécution du code depuis le PHAR -->
+    <rule ref="rulesets/controversial.xml">
+        <exclude name="Superglobals" />
+    </rule>
+    <rule ref="rulesets/design.xml">
+        <exclude name="CouplingBetweenObjects" />
+    </rule>
+    <rule ref="rulesets/naming.xml">
+        <exclude name="LongVariable" />
+        <exclude name="ShortVariable" />
+    </rule>
+    <rule ref="rulesets/unusedcode.xml">
+    <exclude name="UnusedFormalParameter" />
+    </rule>
+    <!-- Lève la limite de numberOfChildren pour accepter tous les enfants de la classe AbstractMigrationCommand -->
+    <rule ref="rulesets/design.xml/NumberOfChildren">
+        <properties>
+            <property name="minimum" value="30"/>
+        </properties>
+    </rule>
+</ruleset>
+```
