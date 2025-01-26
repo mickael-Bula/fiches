@@ -51,15 +51,20 @@ define SITE "test_auth.local"
 
 ## Modification de sites.conf
 
-Ouvrir sites.conf de Laragon, pour jouter la ligne suivante à la fin du fichier du projet :
+Ouvrir sites.conf de Laragon, pour ajouter la ligne suivante à la fin du fichier du projet :
 
 ```bash
 test_auth=https://test_auth.local
 ```
 
-VIsiter le site depuis Laragon > www > test_auth, ou avec l'URL `https://test_auth.local/`
+Visiter le site depuis Laragon > www > test_auth, ou avec l'URL `https://test_auth.local/`
 
-Le certificat est automatiquement ajouté au na
+Le certificat est automatiquement ajouté au navigateur.
 
 Explication : la ligne `test_auth=https://test_auth.local` informe Laragon que lorsqu'on clique sur Menu > www > test_auth,
 il doit ouvrir directement l'URL avec le protocole HTTPS.
+
+## Configurer phpStorm pour le debug https
+
+L'appli `test_auth` étant maintenant en https, il faut ajouter une configuration pour que phpStorm écoute les connexions en provenance du port 443.
+Pour cela, dans les Settings de phpStorm > PHP > Servers > + pour ajouter une configuration avec le même nom d'hôte `test_auth.local`, mais sur le port 443.
