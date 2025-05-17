@@ -5,7 +5,7 @@ La configuration suivante permet de servir des applications depuis un PC sur leq
 Les applications ne sont cependant ouvertes qu'aux postes présents sur le même réseau local domestique (donc privé).
 Cette limitation est un choix et peut être modifiée.
 
-## 1. Configurer le Pare-feu Windows
+## 1. Configurer le Pare-feu Windows ⚙️
 
 ### Autoriser le Trafic Entrant sur le Port 80
 
@@ -20,7 +20,7 @@ Sélectionnez **Autoriser la connexion**, puis cliquez sur **Suivant**.
 Choisissez les profils auxquels la règle s'applique (Privé), puis cliquez sur **Suivant**.
 Donnez un nom à la règle, par exemple, "Autoriser le trafic HTTP", puis cliquez sur **Terminer**.
 
-## 2. Configurer WampServer pour Accepter les Connexions Externes
+## 2. Configurer WampServer pour Accepter les Connexions Externes ⚙️
 
 ### Modifier le Fichier de Configuration d'Apache
 
@@ -52,14 +52,14 @@ Assurez-vous que les directives Require all granted sont également présentes d
 - Dans WampServer, cliquez sur l'icône dans la barre des tâches et sélectionnez Redémarrer tous les services.
 - Assurez-vous que les services Apache et MySQL sont bien en cours d'exécution (l'icône WampServer devrait être verte).
 
-## 3. Trouver l'Adresse IP du PC Serveur
+## 3. Trouver l'Adresse IP du PC Serveur 🔍
 
 ### Utiliser l'Invite de Commandes
 
 - Ouvrez l'invite de commandes et tapez ipconfig.
 - Notez l'adresse IPv4 de votre PC serveur (par exemple, 192.168.1.10).
 
-## 4. Accéder à l'Application Web depuis l'Autre PC
+## 4. Accéder à l'Application Web depuis l'Autre PC 🎯
 
 ### Utiliser un Navigateur Web
 
