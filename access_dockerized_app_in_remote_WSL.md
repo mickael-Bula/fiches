@@ -139,7 +139,7 @@ export default defineConfig({
 
 ---
 
-## Vérifiee que le pare-feu Windows ne bloque pas le port 80
+## Vérifier que le pare-feu Windows ne bloque pas le port 80
 
 Ouvre wf.msc (touche Windows + R → tape wf.msc → Entrée).
 
