@@ -2,7 +2,11 @@
 
 ## Montée de version de Symfony
 
-1 - Il faut commencer par régler les problèmes de code dépréciés signalés. 
+1 - Il faut commencer par régler les problèmes de code dépréciés signalés. Elles sont visibles avec la commande suivante :
+
+```bash
+$ php bin/console debug:container --deprecations
+```
 
 Par exemple, traiter l'avertissement suivant :
   `User Deprecated: Since symfony/framework-bundle 5.1: The "session.flash_bag" service is deprecated, use "$session->getFlashBag()" instead.`
