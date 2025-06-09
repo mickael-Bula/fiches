@@ -81,3 +81,15 @@ server {
     }
 }
 ```
+
+Ici, l'exposition du port 9000 sert à faire communiquer les containers Nginx et PHP-FPM.
+Le port 9000 n’est donc pas là pour Xdebug : c’est en fait le port FastCGI de PHP-FPM.
+Le process principal du conteneur php est php-fpm, qui écoute toujours sur 9000 (sauf configuration contraire).
+Nginx, dans webserver, contient cette déclaration :
+
+```ini
+fastcgi_pass php:9000;
+```
+
+Il doit donc pouvoir atteindre ce port à l’intérieur du réseau Docker.
+`expose: - 9000` rend ce port visible pour les autres services sans l’ouvrir vers l’extérieur, ce qui suffit.
