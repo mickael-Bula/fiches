@@ -10,7 +10,7 @@ $ php bin/console debug:container --deprecations
 
 Par exemple, traiter l'avertissement suivant :
   `User Deprecated: Since symfony/framework-bundle 5.1: The "session.flash_bag" service is deprecated, use "$session->getFlashBag()" instead.`
-  Pour ce faire, il faut remplacer l'injection de RequestStack en lieu et place de FlashBagInterface et utiliser la méthode :
+  Pour ce faire, il faut injecter de RequestStack en lieu et place de FlashBagInterface et utiliser la méthode :
   `$this->requestStack->getCurrentRequest()?->getSession()`
 
 2 - Modifier :
