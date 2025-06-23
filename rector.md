@@ -16,10 +16,10 @@ Par exemple, traiter l'avertissement suivant :
 2 - Modifier :
 ```
   "extra": {
-  "symfony": {
-  "allow-contrib": false,
-  "require": "6.0.*"  # préciser ici la nouvelle version
-  }
+    "symfony": {
+      "allow-contrib": false,
+      "require": "6.0.*"  # préciser ici la nouvelle version
+    }
   ```
 
 3 - Dans `composer.json`, remplacer toutes les occurrences de la version actuelle par le nouveau numéro de version :
