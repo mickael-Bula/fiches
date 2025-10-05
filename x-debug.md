@@ -95,14 +95,12 @@ Relancer le serveur, puis naviguer à nouveau vers phpinfo() afin de vérifier q
 Pour lancer une séance de debug Javascript depuis phpstorm :
 
 - Run > Edit configurations : sélectionner Javascript debug
-	Renseigner un nom (Javascript debug par exemple)
-	url : http://localhost:8000 (l'url lancée avec le serveur symfony et le port utilisé)
-	choisir le navigateur chrome
-	Apply
-
+- Renseigner un nom (Javascript debug par exemple)
+- url : http://localhost:8000 (l'url lancée avec le serveur symfony et le port utilisé)
+- choisir le navigateur chrome
+- Apply
 - Mettre un point d'arrêt dans le code JS
-
-Lancer le serveur avec: $ symfony serve -d
+- Lancer le serveur avec: $ symfony serve -d
 
 Sélectionner la session de debug Javascript dans la fenêtre à gauche de la flèche verte : Javascript debug (le nom défini précédemment)
 
