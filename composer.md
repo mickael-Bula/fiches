@@ -74,3 +74,20 @@ Pour s'assurer que la version installée est exempte de vulnérabilités :
 ```bash
 $ composer show symfony/http-client
 ```
+
+## TROUBLESHOOTINGS
+
+Dans le cas d'une erreur survenant au lancement s'une commande composer :
+```bash
+C:\laragon\www\webtrader-stimulus
+λ composer self-update
+The following exception indicates a possible issue with the Avast Firewall
+Check https://getcomposer.org/local-issuer for details
+
+In CurlDownloader.php line 394:
+                                                                                                                                     
+  curl error 60 while downloading https://getcomposer.org/versions: SSL certificate problem: unable to get local issuer certificate
+```
+
+La solution pourrait être de désactiver la vérification https de l'anti-virus.
+Pour cela, aller dans Explore > Web Shield > Open Web Shield > Décocher l'option https scanning
