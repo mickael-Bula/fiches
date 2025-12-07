@@ -184,10 +184,10 @@ Le test effectué avec un point d'arrêt dans le code de test (sans même que ce
 ## Configuration de xdebug vers un serveur distant
 
 Pour activer les connexions xdebug depuis un serveur distant vers mon phpstorm local et sur le réseau local,
-il faut veiller à utiliser la découverte automatique du client pour s'affranchir des adresses IP dynamiques allouées par le router, surtout sur résueau WIFI :
+il faut veiller à utiliser la découverte automatique du client pour s'affranchir des adresses IP dynamiques allouées par le router, surtout sur réseau WIFI :
 
-- aller dans le fichie de configuration de xdebug sous `/etc/php/8.2/apache2/conf.d/20-xdebug.ini` et indiquer `xdebug.discover_client_host=1`
+- aller dans le fichier de configuration de xdebug sous `/etc/php/8.2/apache2/conf.d/20-xdebug.ini` et indiquer `xdebug.discover_client_host=1`
 - configurer le PHP CLI pour utiliser celui du serveur distant : CTRL + ALT + S > PHP > CLI Interpreter > renseigner les informations en cliquant sur les ... : le debugger xdebug doit afficher sa version s'il est trouvé
 
 
-- si après avoir mis un point d'arrêt, celui-ci n'est pas atteint, s'assurer que le réseau est considéré comme sûr par le firewall de l'anti-virus
+- si après avoir mis un point d'arrêt, si celui-ci n'est pas atteint, s'assurer que le réseau est considéré comme sûr par le firewall de l'anti-virus.
