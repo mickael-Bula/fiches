@@ -183,6 +183,8 @@ Le test effectué avec un point d'arrêt dans le code de test (sans même que ce
 
 ## Configuration de xdebug vers un serveur distant
 
+>NOTE : Pour tester ce type de connexion, j'utilise une VM de mon homelab Proxmox.
+
 Pour activer les connexions xdebug depuis un serveur distant vers mon phpstorm local et sur le réseau local,
 il faut veiller à utiliser la découverte automatique du client pour s'affranchir des adresses IP dynamiques allouées par le router, surtout sur réseau WIFI :
 
