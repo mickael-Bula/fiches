@@ -134,8 +134,8 @@ ssh -v -f -N -R 9003:localhost:9003 user@192.168.XX.XX
 **Settings > PHP > Servers**
 
 - Nom : docker (ou autre)
-- Host : localhost ou l’IP que tu utilises dans le navigateur
-- Port : 8081 ou ce que tu exposes depuis Docker
+- Host : localhost ou l’IP utilisée dans le navigateur
+- Port : 8081 ou ce qui est exposé depuis Docker
 - Debugger : Xdebug
 - Use path mappings : ✅
 
