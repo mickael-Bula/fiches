@@ -92,6 +92,14 @@ Pour lire le prompt et le code source ensemble :
 $ cat prompt.txt app.js | gemini
 ```
 
+### Redirection de fichier
+
+Si tout le contenu (instructions + code) est mis dans un seul fichier **audit.txt** :
+
+```Bash
+gemini < audit.txt
+```
+
 ## Considération
 
 **⚠️ Attention à la taille**
