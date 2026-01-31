@@ -91,3 +91,11 @@ Pour lire le prompt et le code source ensemble :
 ```bash
 $ cat prompt.txt app.js | gemini
 ```
+
+## Considération
+
+⚠️ Attention à la taille
+Bien que Gemini Flash accepte énormément de texte, envoyer tout un projet (ex: le dossier vendor/), 
+aura pour conséquences suivantes d'épuiser le quota inutilement et de "noyer" l'IA dans des informations inutiles.
+
+L'idée est de Cibler toujours : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
