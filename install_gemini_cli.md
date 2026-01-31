@@ -8,13 +8,13 @@ pip install -U google-genai
 
 ```PowerShell
 # Définit la clé de façon permanente pour l'utilisateur
-[Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "VOTRE_CLE_ICI", "User")
+[Environment]::SetEnvironmentVariable("GEMINI_API_KEY", "LA_CLE_API_ICI", "User")
 # Note : Redémarrez le terminal après cette commande
 ```
 
 ## Étape 3 : Création du script 
 
-Il s'agit du "Cerveau" (C:\Users\bulam\.local\bin\ask.py) qui gère le prompt fourni comme texte OU comme fichier.
+Il s'agit du "Cerveau" (C:\Users\mon_user\.local\bin\ask.py) qui gère le prompt fourni comme texte OU comme fichier.
 
 Voici la commande PowerShell pour créer le fichier Python avec son contenu :
 
@@ -54,7 +54,7 @@ def ask():
 
 if __name__ == "__main__":
     ask()
-'@ | Out-File -FilePath "C:\Users\bulam\.local\bin\ask.py" -Encoding utf8
+'@ | Out-File -FilePath "C:\Users\mon_user\.local\bin\ask.py" -Encoding utf8
 ```
 
 ## Étape 4 : Création de la commande gemini (Alias Cmder) 
