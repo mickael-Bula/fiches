@@ -97,7 +97,7 @@ if __name__ == "__main__":
 Ouvrir le fichier `C:\cmder\config\user_aliases.cmd` (ou le dossier cmder) et ajouter :
 
 ```DOS
-gemini=python "C:\Users\bulam\.local\bin\ask.py" $*
+gemini="C:\laragon\bin\python\python-3.10\python.exe" C:\Users\bulam\.local\bin\ask.py $*
 ```
 ## Utilisation
 
