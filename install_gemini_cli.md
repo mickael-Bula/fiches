@@ -72,20 +72,21 @@ Pour interroger **Gemini** depuis le terminal :
 $ gemini "Génère un jeu du pendu en javascript"
 ```
 
-```bash
 Avec un fichier prompt.txt contenant la question précédente :
+
+```bash
 $ gemini -f prompt.txt
 ```
 
 ### Fournir du contexte
 
-Poser une question en fournissant un fichier de contexte
+Poser une question en fournissant un fichier de contexte :
 
 ```bash
 $ cat app.js | gemini "Ajoute un formulaire de connexion au fichier app.js" 
 ```
 
-Pour lire le prompt et le code source ensemble
+Pour lire le prompt et le code source ensemble :
 
 ```bash
 $ cat prompt.txt app.js | gemini
