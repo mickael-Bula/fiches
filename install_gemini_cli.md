@@ -22,35 +22,70 @@ Voici la commande PowerShell pour créer le fichier Python avec son contenu :
 @'
 import os
 import sys
+
+# Force le chemin vers les bibliothèques Laragon
+site_packages = r"c:\laragon\bin\python\python-3.10\lib\site-packages"
+if site_packages not in sys.path:
+    sys.path.append(site_packages)
+
 from google import genai
 
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 def ask():
-    # On récupère tous les arguments après le nom du script
+    pipe_content = ""
+    file_content = ""
+    user_query = ""
+
+    # 1. Lecture du flux entrant (Pipe ou Redirection < )
+    if not sys.stdin.isatty():
+        pipe_content = sys.stdin.read().strip()
+
+    # 2. Analyse des arguments
     args = sys.argv[1:]
-    if not args:
-        print("Usage: gemini 'ma question' OU gemini fichier.txt")
+    
+    if "-f" in args:
+        # Cas : gemini -f prompt.txt
+        try:
+            idx = args.index("-f")
+            file_path = args[idx + 1]
+            with open(file_path, 'r', encoding='utf-8') as f:
+                file_content = f.read().strip()
+            # On retire -f et le nom du fichier des arguments pour le texte restant
+            args.pop(idx + 1)
+            args.pop(idx)
+        except (IndexError, FileNotFoundError):
+            print("Erreur : Fichier spécifié après -f introuvable.")
+            return
+
+    # Le reste des arguments est considéré comme la question texte
+    user_query = " ".join(args).strip()
+
+    # 3. Assemblage intelligent du Prompt
+    # On combine tout ce qu'on a trouvé (Pipe + Fichier + Texte)
+    parts = []
+    if pipe_content: parts.append(pipe_content)
+    if file_content: parts.append(file_content)
+    if user_query:   parts.append(user_query)
+
+    prompt = "\n\n".join(parts)
+
+    if not prompt:
+        print("Usage:")
+        print("  gemini 'Ma question'")
+        print("  gemini -f instructions.txt")
+        print("  cat code.php | gemini 'Analyse ce code'")
+        print("  gemini < audit.txt")
         return
-
-    # Nettoyage : si l'utilisateur met "-f", on l'ignore pour trouver le fichier
-    potential_file = args[1] if args[0] == "-f" and len(args) > 1 else args[0]
-
-    if os.path.isfile(potential_file):
-        with open(potential_file, 'r', encoding='utf-8') as f:
-            prompt = f.read()
-    else:
-        # Si ce n'est pas un fichier, on traite tout comme du texte
-        prompt = " ".join(args)
 
     try:
         response = client.models.generate_content(
-            model='gemini-flash-latest', 
+            model='gemini-flash-latest',
             contents=prompt
         )
         print(response.text)
     except Exception as e:
-        print(f"Erreur : {e}")
+        print(f"Erreur API : {e}")
 
 if __name__ == "__main__":
     ask()
