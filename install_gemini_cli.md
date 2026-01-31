@@ -140,7 +140,9 @@ gemini < audit.txt
 **⚠️ Attention à la taille**
 
 Bien que Gemini Flash accepte énormément de texte, envoyer tout un projet (ex: le dossier vendor/), 
-aura pour conséquences suivantes d'épuiser le quota inutilement et de "noyer" l'IA dans des informations inutiles.
+aura pour conséquence d'épuiser le quota inutilement et de "noyer" l'IA dans des informations inutiles.
+
+L'idée est de Cibler toujours : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
 
 ## Coopération Gemini-Aider
 
@@ -174,7 +176,7 @@ Il s'utiliserait de cette façon :
 $ glog "Analyse ce contrôleur pour PHP 8.2"
 ```
 
-Et la sortie serait alors produite dans les fichiers dernier_plan.md et historique_global.md de manière automatique.
+Et la sortie serait alors produite dans les fichiers `dernier_plan.md` et `historique_global.md` de manière automatique.
 
 Pour demander à Aider d'exécuter les dernières instructions listées par Gemini :
 
@@ -182,7 +184,7 @@ Pour demander à Aider d'exécuter les dernières instructions listées par Gemi
 $ aider src/Controller/OldController.php --message "$(cat dernier_plan.md)"
 ```
 
-Pour que Gemini produise un résultat exploitable par Aider, je crée également un fichier de contexte global, prompt_system.txt.
+Pour que Gemini produise un résultat exploitable par Aider, je crée également un fichier de contexte global, `prompt_system.txt`.
 Ce fichier pourrait contenir ceci :
 
 ```text
@@ -196,7 +198,7 @@ STRUCTURE TA RÉPONSE :
 Sois précis et technique. Évite les bavardages inutiles.
 ```
 
-Il serait intégrer automatiquement lors de l'appel du script Python ask.py :
+Il serait intégrer automatiquement lors de l'appel du script Python `ask.py` :
 
 ```python
 import os
@@ -244,13 +246,9 @@ def ask():
     # ... (Reste de l'appel API avec client.models.generate_content) …
     ```
 
->NOTE : pour que l'encodage UTF-8 généré par Gemini en raison du markdown ne génère pas d'erreur, je force l'encodage UTF-8 pour Python :
+>NOTE : pour que l'encodage UTF-8 généré par Gemini en raison du markdown ne génère pas d'erreur, je force l'encodage UTF-8 pour Python.
+> Etour ne pas avoir à saisir cette configuration à chaque ouverture d'un terminal, je la place dans le fichier `Cmder C:\laragon\etc\cmder\user_profile.cmd` :
 
 ```bash
 $ set PYTHONIOENCODING=utf-8
 ```
-
-A voir s'il est possible de l'intégrer au script `ask.py`
-
-
-L'idée est de Cibler toujours : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
