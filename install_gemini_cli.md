@@ -244,7 +244,7 @@ def ask():
     prompt = "\n\n---\n\n".join(all_parts)
     
     # ... (Reste de l'appel API avec client.models.generate_content) …
-    ```
+```
 
 >NOTE : pour que l'encodage UTF-8 généré par Gemini en raison du markdown ne génère pas d'erreur, je force l'encodage UTF-8 pour Python.
 >Pour ne pas avoir à saisir cette configuration à chaque ouverture d'un terminal, je la place dans le fichier `Cmder C:\laragon\etc\cmder\user_profile.cmd` :
