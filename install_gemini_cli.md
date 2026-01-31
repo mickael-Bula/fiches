@@ -142,4 +142,115 @@ gemini < audit.txt
 Bien que Gemini Flash accepte énormément de texte, envoyer tout un projet (ex: le dossier vendor/), 
 aura pour conséquences suivantes d'épuiser le quota inutilement et de "noyer" l'IA dans des informations inutiles.
 
+## Coopération Gemini-Aider
+
+Je cherche à optimiser un flux de travail utilisant Gemini comme cerveau et Aider comme acteur.
+
+J'ai installé les deux outils globalement :
+
+- Gemini est fourni par le SDK genai sous Python 3.10 (installation avec pip)
+- Aider est installé avec pipx (donc dans un environnement virtuel)
+
+L'idée est de faire coopérer ces deux outils en récupérant la sortie de l'un pour la passer à l'autre.
+
+pour ne pas perdre l'historique des discussions, tout en fournissant un fichier qui contient uniquement les informations pertinentes,
+j'enregistre la dernière sortie dans un fichier dernier_plan.md, dont j'ajoute ensuite le contenu au fichier de journalisation historique_global.md
+
+La commande pourra être :
+
+```bash
+$ gemini "Ma question" > dernier_plan.md & type dernier_plan.md >> historique_global.md
+```
+
+Un alias pratique pourrait être :
+
+```bash
+$ glog=gemini $* > dernier_plan.md & type dernier_plan.md >> historique_global.md & type dernier_plan.md
+```
+
+Il s'utiliserait de cette façon :
+
+```bash
+$ glog "Analyse ce contrôleur pour PHP 8.2"
+```
+
+Et la sortie serait alors produite dans les fichiers dernier_plan.md et historique_global.md de manière automatique.
+
+Pour demander à Aider d'exécuter les dernières instructions listées par Gemini :
+
+```bash
+$ aider src/Controller/OldController.php --message "$(cat dernier_plan.md)"
+```
+
+Pour que Gemini produise un résultat exploitable par Aider, je crée également un fichier de contexte global, prompt_system.txt.
+Ce fichier pourrait contenir ceci :
+
+```text
+Tu es un expert en migration Symfony et PHP 8.2+.
+Ta mission est d'analyser le code fourni et de proposer des améliorations de modernisation.
+
+STRUCTURE TA RÉPONSE :
+1. ANALYSE : Explique brièvement (en français) les changements nécessaires et pourquoi (ex: typage, attributs, performances).
+2. INSTRUCTIONS POUR AIDER : Termine ta réponse par une section claire commençant par "### ACTIONS POUR AIDER". Dans cette section, donne des instructions directes et techniques que l'outil Aider pourra exécuter (ex: "Remplace les annotations @Route par des Attributs #[Route]", "Ajoute le typage string à la propriété $name").
+
+Sois précis et technique. Évite les bavardages inutiles.
+```
+
+Il serait intégrer automatiquement lors de l'appel du script Python ask.py :
+
+```python
+import os
+import sys
+
+# ... (garder les imports et le sys.path.append précédents) ...
+
+def ask():
+    # --- NOUVEAU : Lecture du Prompt Système ---
+    system_prompt_path = r"C:\Users\bulam\.local\bin\prompt_system.txt"
+    system_content = ""
+    if os.path.exists(system_prompt_path):
+        with open(system_prompt_path, 'r', encoding='utf-8') as f:
+            system_content = f.read().strip()
+    
+    pipe_content = ""
+    file_content = ""
+    user_query = ""
+
+    # 1. Lecture stdin (Pipe)
+    if not sys.stdin.isatty():
+        pipe_content = sys.stdin.read().strip()
+
+    # 2. Analyse des arguments (Gestion du -f)
+    args = sys.argv[1:]
+    if "-f" in args:
+        try:
+            idx = args.index("-f")
+            file_path = args[idx + 1]
+            with open(file_path, 'r', encoding='utf-8') as f:
+                file_content = f.read().strip()
+            args.pop(idx + 1); args.pop(idx)
+        except: pass
+    user_query = " ".join(args).strip()
+
+    # 3. Assemblage du Prompt Final avec le Système
+    all_parts = []
+    if system_content: all_parts.append(f"INSTRUCTIONS SYSTÈME :\n{system_content}")
+    if pipe_content:   all_parts.append(f"CODE SOURCE / CONTEXTE :\n{pipe_content}")
+    if file_content:   all_parts.append(f"INSTRUCTIONS SUPPLÉMENTAIRES :\n{file_content}")
+    if user_query:     all_parts.append(f"QUESTION UTILISATEUR :\n{user_query}")
+
+    prompt = "\n\n---\n\n".join(all_parts)
+    
+    # ... (Reste de l'appel API avec client.models.generate_content) …
+    ```
+
+>NOTE : pour que l'encodage UTF-8 généré par Gemini en raison du markdown ne génère pas d'erreur, je force l'encodage UTF-8 pour Python :
+
+```bash
+$ set PYTHONIOENCODING=utf-8
+```
+
+A voir s'il est possible de l'intégrer au script `ask.py`
+
+
 L'idée est de Cibler toujours : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
