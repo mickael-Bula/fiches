@@ -247,7 +247,7 @@ def ask():
     ```
 
 >NOTE : pour que l'encodage UTF-8 généré par Gemini en raison du markdown ne génère pas d'erreur, je force l'encodage UTF-8 pour Python.
-> Etour ne pas avoir à saisir cette configuration à chaque ouverture d'un terminal, je la place dans le fichier `Cmder C:\laragon\etc\cmder\user_profile.cmd` :
+>Pour ne pas avoir à saisir cette configuration à chaque ouverture d'un terminal, je la place dans le fichier `Cmder C:\laragon\etc\cmder\user_profile.cmd` :
 
 ```bash
 $ set PYTHONIOENCODING=utf-8
