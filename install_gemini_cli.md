@@ -16,6 +16,8 @@ pip install -U google-genai
 
 Il s'agit du "Cerveau" (C:\Users\bulam\.local\bin\ask.py) qui gère le prompt fourni comme texte OU comme fichier.
 
+Voici la commande PowerShell pour créer le fichier Python avec son contenu :
+
 ```PowerShell
 @'
 import os
@@ -57,7 +59,7 @@ if __name__ == "__main__":
 
 ## Étape 4 : Création de la commande gemini (Alias Cmder) 
 
-Ouvrir le fichier `C:\tools\cmder\config\user_aliases.cmd` (ou le dossier cmder) et ajouter :
+Ouvrir le fichier `C:\cmder\config\user_aliases.cmd` (ou le dossier cmder) et ajouter :
 
 ```DOS
 gemini=python "C:\Users\bulam\.local\bin\ask.py" $*
