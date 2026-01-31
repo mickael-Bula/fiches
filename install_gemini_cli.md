@@ -64,3 +64,29 @@ Ouvrir le fichier `C:\cmder\config\user_aliases.cmd` (ou le dossier cmder) et aj
 ```DOS
 gemini=python "C:\Users\bulam\.local\bin\ask.py" $*
 ```
+## Utilisation
+
+Pour interroger **Gemini** depuis le terminal :
+
+```bash
+$ gemini "Génère un jeu du pendu en javascript"
+```
+
+```bash
+Avec un fichier prompt.txt contenant la question précédente :
+$ gemini -f prompt.txt
+```
+
+### Fournir du contexte
+
+Poser une question en fournissant un fichier de contexte
+
+```bash
+$ cat app.js | gemini "Ajoute un formulaire de connexion au fichier app.js" 
+```
+
+Pour lire le prompt et le code source ensemble
+
+```bash
+$ cat prompt.txt app.js | gemini
+```
