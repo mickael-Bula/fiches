@@ -469,5 +469,50 @@ ago=aider --no-gitignore --no-auto-commits --message-file dernier_plan.md $*
 ```
 
 Cet alias appel **Aider** en lui passant en argument le fichier `dernier_plan.md` généré par Gemini.
+
 Il précise également de ne pas faire de commit (je m'en chargerai après validation) et de ne pas demander l'ajout du fichier `.env` à chaque appel.
 
+## Le prompt_system d'Aider
+
+À chaque initialisation, **Aider** recherche à la racine du projet un fichier nommé `instruction.md`,
+dont il charge les directives en tant que **System Prompt** qui s'ajoute au message.
+
+La répartition des rôles entre **Gemini** et **Aider** devient donc celle-ci :
+
+**glog** (Gemini) : C'est l'architecte qui analyse le code, réfléchit à la stratégie et produit le fichier dernier_plan.md. 
+Il n'a pas connaissance du fichier `.aider.instructions.md` (à moins de lui donner explicitement).
+
+**ago** (Aider) : C'est l'ouvrier spécialisé. 
+Il prend le plan de l'architecte (`--message-file dernier_plan.md`) et l'exécute en respectant ses propres consignes de sécurité ou de style (celles contenues dans `.aider.instructions.md`).
+
+Voici un exemple de ce prompt :
+
+```md
+# Instructions
+
+Tu agis en tant qu'exécuteur technique. 
+Ta priorité absolue est d'appliquer les changements décrits dans le message de l'utilisateur (qui provient d'un plan d'analyse Gemini).
+
+## Principes d'application
+
+1. **Fidélité au plan :** 
+    - Applique scrupuleusement les modifications demandées dans la section "ACTIONS POUR AIDER" du message.
+
+2. **Standard de structure :**
+   - Assure-toi que `declare(strict_types=1);` est présent.
+   - Si le plan demande des Attributs PHP 8, supprime systématiquement les anciennes annotations DocBlock correspondantes pour éviter les doublons.
+
+3. **Cohérence Symfony :**
+   - Utilise l'injection par constructeur si le plan mentionne l'ajout de services.
+   - Respecte le typage strict (arguments et types de retour) même si le plan est incomplet sur ce point.
+
+4. **Auto-correction :** 
+   - Si le plan suggère une syntaxe obsolète (rare avec Gemini), privilégie toujours la syntaxe moderne PHP 8.2+.
+
+Concentre-toi sur l'édition parfaite du code source.
+
+## Validation de contexte
+- Avant d'appliquer le plan, vérifie si les classes ou services mentionnés existent réellement dans le projet.
+- Si le plan suggère une classe inexistante, mais qu'une alternative équivalente existe dans le projet, privilégie l'alternative locale.
+- En cas de contradiction majeure entre le plan et l'architecture actuelle du projet, propose une correction dans le chat avant d'éditer le fichier.
+```
