@@ -38,10 +38,17 @@ from google import genai
 
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
+
 def ask():
+    # --- Lecture du Prompt Système ---
+    system_prompt_path = r"C:\Users\mon_user\.local\bin\prompt_system.txt"
+    system_content = ""
+    if os.path.exists(system_prompt_path):
+        with open(system_prompt_path, 'r', encoding='utf-8') as f:
+            system_content = f.read().strip()
+
     pipe_content = ""
     file_content = ""
-    user_query = ""
 
     # 1. Lecture du flux entrant (Pipe ou Redirection < )
     if not sys.stdin.isatty():
@@ -49,7 +56,7 @@ def ask():
 
     # 2. Analyse des arguments
     args = sys.argv[1:]
-    
+
     if "-f" in args:
         # Cas : gemini -f prompt.txt
         try:
@@ -69,19 +76,38 @@ def ask():
 
     # 3. Assemblage intelligent du Prompt
     # On combine tout ce qu'on a trouvé (Pipe + Fichier + Texte)
-    parts = []
-    if pipe_content: parts.append(pipe_content)
-    if file_content: parts.append(file_content)
-    if user_query:   parts.append(user_query)
+    parts: list[str] = []
+    if system_content:
+        parts.append(f"INSTRUCTIONS SYSTÈME :\n{system_content}")
+    if pipe_content:
+        parts.append(pipe_content)
+    if file_content:
+        parts.append(file_content)
+    if user_query:
+        parts.append(user_query)
 
-    prompt = "\n\n".join(parts)
+    prompt = "\n\n---\n\n".join(parts)
 
-    if not prompt:
-        print("Usage:")
+    if not pipe_content and not file_content and not user_query:
+        print("\n=== WORKFLOW GEMINI + AIDER ===")
+        print("Usage simple :")
+        print("\nUtilisation de l'alias gemini")
         print("  gemini 'Ma question'")
         print("  gemini -f instructions.txt")
         print("  cat code.php | gemini 'Analyse ce code'")
         print("  gemini < audit.txt")
+        print("\n===================")
+        print("\nUsage de l'alias glog, qui ajoute une journalisation des discussions :\n")
+        print("  glog \"Ma question\"")
+        print("\nUsage avec fichier(s) en contexte :\n")
+        print("  cat fichier.php | glog \"Analyse ce code\"")
+        print("  cat f1.php f2.php | glog \"Explique la relation\"")
+        print("\nUsage avec instructions décrite dans un fichier texte :")
+        print("  glog -f plan_migration.txt")
+        print("\nUsage avec fichier en contexte et fichier d'instruction :")
+        print("  cat code.php | glog -f regles.txt")
+        print("\nAprès génération du plan :")
+        print("  ago fichier.php")
         return
 
     try:
@@ -92,6 +118,7 @@ def ask():
         print(response.text)
     except Exception as e:
         print(f"Erreur API : {e}")
+
 
 if __name__ == "__main__":
     ask()
