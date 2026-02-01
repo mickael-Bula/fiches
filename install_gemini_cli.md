@@ -189,7 +189,7 @@ J'ai installé les deux outils globalement :
 L'idée est de faire coopérer ces deux outils en récupérant la sortie de l'un pour la passer à l'autre.
 
 pour ne pas perdre l'historique des discussions, tout en fournissant un fichier qui contient uniquement les informations pertinentes,
-j'enregistre la dernière sortie dans un fichier dernier_plan.md, dont j'ajoute ensuite le contenu au fichier de journalisation historique_global.md
+j'enregistre la dernière sortie dans un fichier `dernier_plan.md`, dont j'ajoute ensuite le contenu au fichier de journalisation `historique_global.md`.
 
 La commande pourra être :
 
@@ -197,7 +197,7 @@ La commande pourra être :
 $ gemini "Ma question" > dernier_plan.md & type dernier_plan.md >> historique_global.md
 ```
 
-Un alias pratique pourrait être :
+Un alias pratique pourrait donc être **glog** (Gemini + Log) :
 
 ```bash
 $ glog=gemini $* > dernier_plan.md & type dernier_plan.md >> historique_global.md & type dernier_plan.md
@@ -344,7 +344,7 @@ set ASK_SCRIPT=C:\Users\mon_user\.local\bin\ask.py
 
 ## Alias Gemini
 
-Pour simplifier au maximum les appels à **Gemini**, j'ai créé l'alias suivant dans le fichier `C:\laragon\bin\cmder\config\user_aliases.cmd` :
+Pour simplifier au maximum les appels à **Gemini**, j'ai créé l'alias **glog** (Gemini + Log) dans le fichier `C:\laragon\bin\cmder\config\user_aliases.cmd` :
 
 ```cmd
 glog=%PYTHON_BIN% %LOCAL_BIN%\glog.py $*
@@ -435,9 +435,9 @@ Ce script effectue les action ssuivantes :
 
 De cette manière, je conserve un historique complet du flux de questions et réponses de la discussion.
 
-## Alias Aider
+## Alias Aider (**ago**)
 
-De même, pour simplifer l'appel à **Aider**, j'ai créé cet alias dans `C:\laragon\bin\cmder\config\user_aliases.cmd` :
+De même, pour simplifer l'appel à **Aider**, j'ai créé l'alias **ago** (Aider Go !) dans `C:\laragon\bin\cmder\config\user_aliases.cmd` :
 
 ```cmd
 ago=aider --no-gitignore --no-auto-commits --message-file dernier_plan.md $*
