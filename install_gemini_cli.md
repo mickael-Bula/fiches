@@ -125,6 +125,31 @@ if __name__ == "__main__":
 '@ | Out-File -FilePath "C:\Users\mon_user\.local\bin\ask.py" -Encoding utf8
 ```
 
+## Fichier de prompt système
+
+Pour que Gemini reste focaliser sur certains prinicipes, sans avoir à les lui répéter constamment,
+il est possible de lui fournir un fichier `prompt_system.txt`, contenant les directives.
+
+Ce fichier pourra être, par exemple :
+
+```txt
+Tu es un expert en Symfony et PHP 8.2+.
+Ta mission est d'analyser le code fourni et de proposer des améliorations de modernisation.
+
+STRUCTURE TA RÉPONSE :
+1. ANALYSE :
+Explique brièvement (en français) les changements nécessaires et pourquoi (ex : typage, attributs, performances).
+2. INSTRUCTIONS POUR AIDER :
+Termine ta réponse par une section claire commençant par "### ACTIONS POUR AIDER".
+Dans cette section, donne des instructions directes et techniques que l'outil Aider pourra exécuter
+(ex : "Remplace les annotations @Route par des Attributs #[Route]", "Ajoute le typage string à la propriété $name").
+
+Sois précis et technique. Évite les bavardages inutiles.
+```
+
+Pour que le script `ask.py` puisse l'ajouter à son traitement, un chemin prédéfini y a été ajouté, 
+avec cette valeur par défaut : `C:\Users\mon_user\.local\bin\prompt_system.txt`.
+
 ## Étape 4 : Création de la commande gemini (Alias Cmder) 
 
 Ouvrir le fichier `C:\laragon\bin\cmder\config\user_aliases.cmd` (ou le dossier cmder) et ajouter :
