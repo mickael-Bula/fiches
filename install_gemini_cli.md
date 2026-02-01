@@ -115,7 +115,8 @@ def ask():
             model='gemini-flash-latest',
             contents=prompt
         )
-        print(response.text)
+        sys.stdout.buffer.write(response.text.encode('utf-8'))
+        sys.stdout.write('\n')
     except Exception as e:
         print(f"Erreur API : {e}")
 
