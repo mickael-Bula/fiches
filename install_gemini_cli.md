@@ -1,3 +1,9 @@
+# Workflow Gemini + Aider
+
+## Prérequis
+
+Python installé sur le poste. J'utilise ici la version 3.10.
+
 ## Étape 1 : Installation du moteur (SDK)
 
 ```PowerShell
@@ -97,7 +103,7 @@ if __name__ == "__main__":
 Ouvrir le fichier `C:\cmder\config\user_aliases.cmd` (ou le dossier cmder) et ajouter :
 
 ```DOS
-gemini="C:\laragon\bin\python\python-3.10\python.exe" C:\Users\bulam\.local\bin\ask.py $*
+gemini="C:\laragon\bin\python\python-3.10\python.exe" C:\Users\mon_user\.local\bin\ask.py $*
 ```
 ## Utilisation
 
@@ -216,7 +222,7 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 
 def ask():
     # --- Lecture du Prompt Système ---
-    system_prompt_path = r"C:\Users\bulam\.local\bin\prompt_system.txt"
+    system_prompt_path = r"C:\Users\mon_user\.local\bin\prompt_system.txt"
     system_content = ""
     if os.path.exists(system_prompt_path):
         with open(system_prompt_path, 'r', encoding='utf-8') as f:
@@ -298,15 +304,15 @@ Pour simplifier et harmoniser les chemins appelés depuis les scripts Python et 
 
 ```cmd
 :: Ajout du dossier des scripts Gemini au PATH
-set "PATH=C:\Users\bulam\.local\bin;%PATH%"
+set "PATH=C:\Users\mon_user\.local\bin;%PATH%"
 
 :: Déclare l'encodage UTF-8 pour les scripts Python
 set PYTHONIOENCODING=utf-8
 
 :: Chemins vers les exécutables et scripts
-set LOCAL_BIN=C:\Users\bulam\.local\bin
+set LOCAL_BIN=C:\Users\mon_user\.local\bin
 set PYTHON_BIN=C:\laragon\bin\python\python-3.10\python.exe
-set ASK_SCRIPT=C:\Users\bulam\.local\bin\ask.py
+set ASK_SCRIPT=C:\Users\mon_user\.local\bin\ask.py
 ```
 
 ## Alias Gemini
@@ -334,7 +340,7 @@ def run():
         return
 
     # Configuration des chemins (utilise les var envs déclarées dans C:\laragon\bin\cmder\config\user_aliases.cmd)
-    ask_script = os.environ.get('ASK_SCRIPT', r'C:\Users\bulam\.local\bin\ask.py')
+    ask_script = os.environ.get('ASK_SCRIPT', r'C:\Users\mon_user\.local\bin\ask.py')
     python_bin = os.environ.get('PYTHON_BIN', 'python')
     hist_file = 'historique_global.md'
     plan_file = 'dernier_plan.md'
