@@ -291,3 +291,113 @@ if __name__ == "__main__":
 ```bash
 $ set PYTHONIOENCODING=utf-8
 ```
+
+## Déclaration de variables d'environnement
+
+Pour simplifier et harmoniser les chemins appelés depuis les scripts Python et les alias Cmder, je déclare les variables suivantes dans `C:\laragon\bin\cmder\config\user_profile.cmd` :
+
+```cmd
+:: Ajout du dossier des scripts Gemini au PATH
+set "PATH=C:\Users\bulam\.local\bin;%PATH%"
+
+:: Déclare l'encodage UTF-8 pour les scripts Python
+set PYTHONIOENCODING=utf-8
+
+:: Chemins vers les exécutables et scripts
+set LOCAL_BIN=C:\Users\bulam\.local\bin
+set PYTHON_BIN=C:\laragon\bin\python\python-3.10\python.exe
+set ASK_SCRIPT=C:\Users\bulam\.local\bin\ask.py
+```
+
+## Alias Gemini
+
+Pour simplifier au maximum les appels à **Gemini**, j'ai créé l'alias suivant dans le fichier `C:\laragon\bin\cmder\config\user_aliases.cmd` :
+
+```cmd
+glog=%PYTHON_BIN% %LOCAL_BIN%\glog.py $*
+```
+
+Cet alias appel le script Python suivant :
+
+```python
+import sys
+import subprocess
+import datetime
+import os
+
+
+def run():
+    # 1. Récupérer le prompt passé en argument
+    prompt = " ".join(sys.argv[1:])
+    if not prompt:
+        print("Erreur : Aucun prompt fourni.")
+        return
+
+    # Configuration des chemins (utilise les var envs déclarées dans C:\laragon\bin\cmder\config\user_aliases.cmd)
+    ask_script = os.environ.get('ASK_SCRIPT', r'C:\Users\bulam\.local\bin\ask.py')
+    python_bin = os.environ.get('PYTHON_BIN', 'python')
+    hist_file = 'historique_global.md'
+    plan_file = 'dernier_plan.md'
+
+    # 2. Préparer l'en-tête de l'historique
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    divider = "=" * 50
+    header = f"\n{divider}\nDATE   : {timestamp}\nPROMPT : {prompt}\n{'-' * 50}\n"
+
+    with open(hist_file, 'a', encoding='utf-8') as h:
+        h.write(header)
+
+    # 3. Exécuter ask.py et capturer la sortie
+    # On utilise shell=True pour supporter le piping si nécessaire
+    try:
+        # On exécute ask.py avec le prompt reçu
+        result = subprocess.run(
+            [python_bin, ask_script, prompt],
+            capture_output=True,
+            text=True,
+            encoding='utf-8'
+        )
+
+        if result.returncode != 0:
+            print(f"Erreur lors de l'exécution de Gemini : {result.stderr}")
+            return
+
+        # 4. Écrire dans dernier_plan.md et historique_global.md
+        content = result.stdout
+        with open(plan_file, 'w', encoding='utf-8') as p:
+            p.write(content)
+
+        with open(hist_file, 'a', encoding='utf-8') as h:
+            h.write(content)
+
+        # 5. Afficher le résultat dans le terminal (proprement)
+        print(content)
+
+    except Exception as e:
+        print(f"Une erreur est survenue : {e}")
+
+
+if __name__ == "__main__":
+    run()
+```
+
+Ce script effectue les action ssuivantes :
+- récupère le prompt passé en argument de la commande
+- appelle le script `ask.py` avec le prompt précédent en argument
+- affiche la réponse de Gemini en corrigeant l'encodage
+- enregistre la réponse de Gemini dans le fichier `dernier_plan.md`
+- ajoute la réponse de Gemini dans le fichier `historique_global.md`, précédée du prompt et datée
+
+De cette manière, je conserve un historique complet du flux de questions et réponses de la discussion.
+
+## Alias Aider
+
+De même, pour simplifer l'appel à **Aider**, j'ai créé cet alias dans `C:\laragon\bin\cmder\config\user_aliases.cmd` :
+
+```cmd
+ago=aider --no-gitignore --no-auto-commits --message-file dernier_plan.md $*
+```
+
+Cet alias appel **Aider** en lui passant en argument le fichier `dernier_plan.md` généré par Gemini.
+Il précise également de ne pas faire de commit (je m'en chargerai après validation) et de ne pas demander l'ajout du fichier `.env` à chaque appel.
+
