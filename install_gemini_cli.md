@@ -127,7 +127,7 @@ if __name__ == "__main__":
 
 ## Fichier de prompt système
 
-Pour que Gemini reste focaliser sur certains prinicipes, sans avoir à les lui répéter constamment,
+Pour que Gemini reste focalisé sur certains principes, sans avoir à les lui répéter constamment,
 il est possible de lui fournir un fichier `prompt_system.txt`, contenant les directives.
 
 Ce fichier pourra être, par exemple :
@@ -200,7 +200,7 @@ gemini < audit.txt
 Bien que Gemini Flash accepte énormément de texte, envoyer tout un projet (ex: le dossier vendor/), 
 aura pour conséquence d'épuiser le quota inutilement et de "noyer" l'IA dans des informations inutiles.
 
-L'idée est de Cibler toujours : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
+L'idée est de cibler : Instruction + 1 ou 2 fichiers **maximum** pour une précision optimale.
 
 ## Coopération Gemini-Aider
 
@@ -256,7 +256,7 @@ STRUCTURE TA RÉPONSE :
 Sois précis et technique. Évite les bavardages inutiles.
 ```
 
-Il serait intégrer automatiquement lors de l'appel du script Python `ask.py` :
+Il serait intégré automatiquement lors de l'appel du script Python `ask.py` :
 
 ```python
 import os
@@ -515,4 +515,47 @@ Concentre-toi sur l'édition parfaite du code source.
 - Avant d'appliquer le plan, vérifie si les classes ou services mentionnés existent réellement dans le projet.
 - Si le plan suggère une classe inexistante, mais qu'une alternative équivalente existe dans le projet, privilégie l'alternative locale.
 - En cas de contradiction majeure entre le plan et l'architecture actuelle du projet, propose une correction dans le chat avant d'éditer le fichier.
+```
+
+## Saisie interactive
+
+Pour faciliter les saisies complexes, un script interactif a été créé. Il ajoute les fonctionnalités suivantes :
+- auto-complétion des chemins des fichiers fournis en contexte
+- possibilité de ne fournir que des passages de ces fichiers en délimitant par lignes (par ex : 100-150)
+- possibilité de fournir plusieurs parties d'un même fichier
+
+Le script peut être appelé depuis un alias :
+
+```cmd
+:: alias interrogeant Gemini de manière interractive
+glogi=%PYTHON_BIN% %LOCAL_BIN%\glog_interactive.py
+```
+
+## Utilisation de l'alias
+
+Il suffit de saisir l'alias (**glogi** ici) dans le terminal :
+
+```bash
+$ glogi
+=== ASSISTANT DE CONTEXTE GEMINI ===
+Votre question / instruction : "Modifie le controller HomeController et sa vue de manière à afficher le calcul de la TVA en utilisant le service VatCalculator"                               
+                                                                                                                                                                                              
+Fichier à ajouter (TAB pour compléter, Entrée pour terminer) : src\Controller\HomeController.php                                                                                              
+Plages de lignes pour 'src\Controller\HomeController.php' (ex: 1-20,150-180 ou Entrée pour tout) :                                                                                            
+                                                                                                                                                                                              
+Fichier à ajouter (TAB pour compléter, Entrée pour terminer) : tem                                                                                                                            
+templates\   temp_ctx.txt                                                                                                                                                                     
+                                                                                                                                                                                              
+Fichier à ajouter (TAB pour compléter, Entrée pour terminer) : templates\home\index.html.twig                                                                                                 
+Plages de lignes pour 'templates\home\index.html.twig' (ex: 1-20,150-180 ou Entrée pour tout) : src\Service\Va                                                                                
+src\Service\VatCalculator.php          src\Service\VatCalculatorInterface.php                                                                                                                 
+Plages de lignes pour 'templates\home\index.html.twig' (ex: 1-20,150-180 ou Entrée pour tout) : src\Service\VatCalculator.php                                                                 
+                                                                                                                                                                                              
+Fichier à ajouter (TAB pour compléter, Entrée pour terminer) :                                                                                                                                
+                                                                                                                                                                                              
+=== RÉPONSE DE GEMINI ===                                                                                                                                                                     
+                                                                                                                                                                                              
+1. ANALYSE :                                                                                                                                                                                  
+                                                                                                                                                                                              
+Le code du contrôleur `HomeController` est déjà très moderne
 ```
