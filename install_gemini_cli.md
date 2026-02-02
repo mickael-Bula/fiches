@@ -523,6 +523,15 @@ Pour faciliter les saisies complexes, un script interactif a été créé. Il aj
 - auto-complétion des chemins des fichiers fournis en contexte
 - possibilité de ne fournir que des passages de ces fichiers en délimitant par lignes (par ex : 100-150)
 - possibilité de fournir plusieurs parties d'un même fichier
+- ajout d'un spinner pour signaler que la recherche est en cours
+
+### Installation de la librairie pyreadline3
+
+Pour récupérer les chemins et permettre l'auto-complétion sous Windows, il faut installer la librairie pyreadline3 :
+
+```bash
+pip install pyreadline3
+```
 
 Le script peut être appelé depuis un alias :
 
