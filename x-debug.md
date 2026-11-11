@@ -193,3 +193,17 @@ il faut veiller à utiliser la découverte automatique du client pour s'affranch
 
 
 - si après avoir mis un point d'arrêt, si celui-ci n'est pas atteint, s'assurer que le réseau est considéré comme sûr par le firewall de l'anti-virus.
+
+## Xdebug dans WSL
+
+À garder en tête
+
+Sur Ubuntu, le début du `~/.bashrc` contient une garde `case $- in *i*) ;; *) return;; esac`. 
+Un export placé après cette ligne n’est pas chargé par les shells non interactifs, ce qui est le cas quand PhpStorm lance un interpréteur via `wsl.exe`. 
+Il faut placer l’export avant cette garde, ou dans `~/.profile`.
+
+Pour un nouveau projet, il faut recréer le serveur « WSL » avec ses mappings dans ce projet. 
+Si le message d’erreur réapparaît, ajouter `PHP_IDE_CONFIG=serverName=WSL` dans le template PHPUnit de ce projet.
+Le template ne s’applique qu’aux configurations créées après sa modification. 
+Si une configuration existante continue d’échouer, la supprimer ou ajouter la variable directement dessus.
+Conserver le `PHP_IDE_CONFIG=serverName=WSL` du `.bashrc` pour les sessions lancées depuis le terminal.
